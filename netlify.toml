@@ -29,11 +29,18 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# 1. API proxy to Netlify Serverless Functions (Prevents static 405 Method Not Allowed on DELETE/PUT/PATCH)
+# 1. API proxy to Netlify Serverless Functions (Force rewrite so CDN never intercepts with static 405)
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/api"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/.netlify/functions/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true
 
 # 2. SPA Fallback for client-side routing on *.netlify.app
 [[redirects]]
