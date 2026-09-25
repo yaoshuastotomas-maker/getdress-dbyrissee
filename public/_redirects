@@ -1,0 +1,5 @@
+# Netlify API proxy to Serverless Functions (Handles DELETE/PUT/PATCH without static 405)
+/api/*    /.netlify/functions/api/:splat    200
+
+# Netlify Single Page Application (SPA) redirect rule
+/*    /index.html   200

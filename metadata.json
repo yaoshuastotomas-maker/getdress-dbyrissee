@@ -1,0 +1,6 @@
+{
+  "name": "Get Dress'd by Rissée",
+  "description": "Premier boutique in the Philippines offering authentic Vietnamese designer dress rentals, gala couture, and bespoke evening wear.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

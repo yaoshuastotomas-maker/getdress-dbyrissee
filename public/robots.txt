@@ -1,0 +1,19 @@
+# Robots.txt for Get Dress'd by Rissée
+# https://getdressdbyrissee.ph
+
+User-agent: *
+Allow: /
+Allow: /catalog
+Allow: /about
+Allow: /payment
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+
+# Disallow private owner management area
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/admin/*
+Disallow: /api/auth/*
+
+Sitemap: https://getdressdbyrissee.ph/sitemap.xml

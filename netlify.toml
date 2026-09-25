@@ -1,0 +1,42 @@
+# Netlify Configuration for Get Dress'd by Rissée
+# Free hosting & *.netlify.app domain deployment configuration
+
+[build]
+  publish = "dist"
+  command = "npm run build:client"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Security & Performance Headers for Netlify Edge
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 1. API proxy to Netlify Serverless Functions (Prevents static 405 Method Not Allowed on DELETE/PUT/PATCH)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# 2. SPA Fallback for client-side routing on *.netlify.app
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
